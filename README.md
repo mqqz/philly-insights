@@ -14,4 +14,4 @@ An application that allows users to view correlations between real-estate and cr
 ### Milestone 3 Responsibilities
 * Data Cleaning/Preprocessing: Mohamad, Eric
 * Create/Populate Database: Iris
-* SQL Queries/Descriptions: Michael
+* SQL Queries/Descriptions: Michael, Mohamad
