@@ -1,25 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+const express = require('express');
+const morgan = require('morgan');
+const helmet = require('helmet');
+const cors = require('cors');
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+require('dotenv').config();
 
-export default App;
+const middlewares = require('./middlewares');
+const api = require('./api');
+
+const app = express();
+
+app.use(morgan('dev'));
+app.use(helmet());
+app.use(cors());
+app.use(express.json());
+
+
+app.use('/api', api);
+
+app.use(middlewares.notFound);
+app.use(middlewares.errorHandler);
+
+module.exports = app;
