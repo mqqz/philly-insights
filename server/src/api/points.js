@@ -9,8 +9,7 @@ const pool = require('../db');
 router.get('/', (req, res) => {
     // build the query
     query = `SELECT lng, lat FROM Incidents
-    ${req.query.crime ? `WHERE text_general_code = '${req.query.crime}'` : ''}
-    LIMIT 10`;
+    ${req.query.crime ? `WHERE text_general_code = '${req.query.crime}'` : ''}`;
 
     // get a connection from the pool and execute the query
     pool.getConnection((err, connection) => {
