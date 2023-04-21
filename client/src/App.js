@@ -1,15 +1,37 @@
 import styles from "./index.css" // needed for tailwindcss
 import Heatmap from "./components/Heatmap";
 import Navbar from "./components/Navbar";
+import HomePage from './pages/HomePage';
+import BlocksPage from './pages/BlocksPage';
+import PropertyPage from './pages/PropertyPage';
+
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { CssBaseline, ThemeProvider } from '@mui/material'
+import { createTheme } from "@mui/material/styles";
+import {  blue, red } from "@material-ui/core/colors";
+
+
+export const theme = createTheme({
+  palette: {
+    primary: {
+      main: blue[800],
+    }
+  },
+});
 
 export default function App() {
   return (
     <div className="App">
+    <ThemeProvider theme={theme}>
+      <BrowserRouter>
       <Navbar />
-      <header className="App-header">
-      A data-driven look at the City of Brotherly Love
-      </header>
-      <Heatmap />
+      <Routes>
+          <Route path="/" element={<HomePage/>} />
+          <Route path="/blocks" element={<BlocksPage />} />
+          <Route path="/property" element={<PropertyPage />} />
+        </Routes>
+        </BrowserRouter>
+        </ThemeProvider>
     </div>
   );
 }
