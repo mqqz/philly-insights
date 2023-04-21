@@ -3,12 +3,18 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@emotion/react": "^11.10.6",
+    "@emotion/styled": "^11.10.6",
+    "@mui/icons-material": "^5.11.16",
+    "@mui/material": "^5.12.1",
     "leaflet": "^1.9.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-hook-form": "^7.43.9",
     "react-icons": "^4.8.0",
     "react-leaflet": "^4.2.1",
     "react-leaflet-heatmap-layer-v3": "^3.0.3-beta-1",
+    "react-router-dom": "^6.10.0",
     "react-scripts": "^5.0.1"
   },
   "scripts": {
