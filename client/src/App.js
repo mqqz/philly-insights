@@ -8,7 +8,7 @@ import PropertyPage from './pages/PropertyPage';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { CssBaseline, ThemeProvider } from '@mui/material'
 import { createTheme } from "@mui/material/styles";
-import {  blue, red } from "@material-ui/core/colors";
+import blue from '@mui/material/colors/blue';
 
 
 export const theme = createTheme({
