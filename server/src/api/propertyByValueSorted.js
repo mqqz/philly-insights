@@ -5,10 +5,12 @@ const router = express.Router();
 // get the database connection pool
 const pool = require('../db');
 
-router.get('/propertyByValueSorted', (req, res) => {
-  let { ascending } = req.body;
-  const { buildingType } = req.body;
-  let { count } = req.body;
+router.get('/', (req, res) => {
+  let { ascending } = req.query;
+  const { buildingType } = req.query;
+  let { count } = req.query;
+  // eslint-disable-next-line no-console
+  console.log(req.query);
 
   if (ascending === undefined) {
     ascending = false;
@@ -20,7 +22,7 @@ router.get('/propertyByValueSorted', (req, res) => {
 
   let buildingTypeLimit = '';
   if (buildingType) {
-    buildingTypeLimit = ` WHERE building_code_description = ${buildingType} `;
+    buildingTypeLimit = ` WHERE building_code_description LIKE '%${buildingType}%'`;
   }
 
   const query = `SELECT * FROM Property ${buildingTypeLimit} ORDER BY market_value ${ascending ? 'ASC' : 'DESC'} LIMIT ${count}`;
