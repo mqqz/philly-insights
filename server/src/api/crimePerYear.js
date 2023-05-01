@@ -4,14 +4,14 @@ const router = express.Router();
 
 // get the database connection pool
 const pool = require('../db');
-
-// GET /api/points(crime=...)
+//THIS IS QUERY 3
 router.get('/', (req, res) => {
-  // build the query
-  const query = `SELECT lng, lat FROM Incidents
-    ${req.query.crime ? `WHERE text_general_code = '${req.query.crime}'` : ''}`;
+  const query = `SELECT EXTRACT(YEAR FROM dispatch_date) AS year, COUNT(*) AS crime_count
+  FROM Crime
+  GROUP BY year
+  ORDER BY year DESC
+  `;
 
-  // get a connection from the pool and execute the query
   pool.getConnection((err, connection) => {
     if (err) throw err;
     connection.query(query, (err2, rows) => {
