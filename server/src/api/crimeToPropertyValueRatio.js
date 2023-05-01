@@ -4,7 +4,7 @@ const router = express.Router();
 
 // get the database connection pool
 const pool = require('../db');
-
+//THIS IS QUERY 8
 // GET /api/points(crime=...)
 router.get('/', (req, res) => {
   let pageSize = req.query.per_page || 10;
