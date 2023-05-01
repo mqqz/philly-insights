@@ -16,7 +16,7 @@ router.get('/', (req, res) => {
     "\'Vandalism\'", "\'DRIVING UNDER THE INFLUENCE\'"];
   
   const query = `SELECT text_general_code AS crime_type, COUNT(*) AS crime_count
-  FROM Crime
+  FROM Incidents
   WHERE text_general_code IN (${isViolent ? violentCrimes : nonViolentCrimes})
   GROUP BY text_general_code
   `;

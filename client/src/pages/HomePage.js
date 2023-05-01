@@ -1,6 +1,7 @@
 import Heatmap from "../components/Heatmap";
 import { Grid, Typography, Paper } from '@mui/material';
 import RadarChart from "../components/CrimeRadar";
+import CrimeLineChart from "../components/CrimeLineChart";
 
 export default function HomePage() {
    
@@ -32,8 +33,9 @@ export default function HomePage() {
             </Grid>
 
             <Grid item xs={12}>
-                <Paper elevation={3} style={{padding: "1em", margin: "1em"}} display="flex" justifyContent="center">
-                    <Typography variant="h5">Yearly Crime Data</Typography>
+                <Paper elevation={3} style={{padding: "1em", margin: "1em"}} display="flex">
+                    <Typography variant="h5">Crime Data Linechart</Typography>
+                    <CrimeLineChart/>
                 </Paper>
             </Grid>
         </Grid>
