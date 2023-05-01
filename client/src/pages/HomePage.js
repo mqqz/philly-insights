@@ -30,6 +30,12 @@ export default function HomePage() {
                     <RadarChart violence={false}/>
                 </Paper>
             </Grid>
+
+            <Grid item xs={12}>
+                <Paper elevation={3} style={{padding: "1em", margin: "1em"}} display="flex" justifyContent="center">
+                    <Typography variant="h5">Yearly Crime Data</Typography>
+                </Paper>
+            </Grid>
         </Grid>
     );
 }
