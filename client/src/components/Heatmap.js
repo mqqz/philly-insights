@@ -4,7 +4,7 @@ import 'leaflet/dist/leaflet.css';
 import { MapContainer, TileLayer } from 'react-leaflet';
 import { HeatmapLayer } from 'react-leaflet-heatmap-layer-v3';
 
-export default function Heatmap() {
+export default function Heatmap({width, height}) {
 
     // get points from server api/points
     const [points, setPoints] = useState([]);
@@ -21,7 +21,7 @@ export default function Heatmap() {
     return (
         <div>
             <MapContainer center={[39.952583, -75.165222]} zoom={11}
-            style={{ height: '100vh', width: '100wh'}}>
+            style={{ height: height, width: width}}>
                 <HeatmapLayer
                     points={points}
                     longitudeExtractor={m => m.lng}

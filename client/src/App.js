@@ -1,5 +1,4 @@
 import styles from "./index.css" // needed for tailwindcss
-import Heatmap from "./components/Heatmap";
 import Navbar from "./components/Navbar";
 import HomePage from './pages/HomePage';
 import BlocksPage from './pages/BlocksPage';
@@ -29,9 +28,9 @@ export default function App() {
           <Route path="/" element={<HomePage/>} />
           <Route path="/blocks" element={<BlocksPage />} />
           <Route path="/property" element={<PropertyPage />} />
-        </Routes>
-        </BrowserRouter>
-        </ThemeProvider>
+      </Routes>
+      </BrowserRouter>
+      </ThemeProvider>
     </div>
   );
 }
