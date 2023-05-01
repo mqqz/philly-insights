@@ -7,6 +7,7 @@ const crimePercentByTime = require('./crimePercentByTime');
 const crimePerYear = require('./crimePerYear');
 const crimeByType = require('./crimeByType');
 const crimeAggregated = require('./crimeAggregated');
+const blockDispatchTime = require('./blockDispatchTime');
 
 const allCrimes = require('./allCrimes');
 
@@ -31,6 +32,7 @@ router.use('/crimePercentByTime', crimePercentByTime);
 router.use('/crimePerYear', crimePerYear);
 router.use('/crimeByType', crimeByType);
 router.use('/crimeAggregated', crimeAggregated);
+router.use('/blockDispatchTime', blockDispatchTime);
 
 router.use('/allCrimes', allCrimes);
 
