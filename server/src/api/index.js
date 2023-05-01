@@ -10,6 +10,9 @@ const crimeAggregated = require('./crimeAggregated');
 
 const allCrimes = require('./allCrimes');
 
+const blocks = require('./blocks');
+
+
 const router = express.Router();
 
 router.get('/', (req, res) => {
@@ -28,5 +31,7 @@ router.use('/crimeByType', crimeByType);
 router.use('/crimeAggregated', crimeAggregated);
 
 router.use('/allCrimes', allCrimes);
+
+router.use('/blocks', blocks);
 
 module.exports = router;
