@@ -12,6 +12,7 @@ const allCrimes = require('./allCrimes');
 
 const blocks = require('./blocks');
 const crimeMonthYear = require('./crimeMonthYear');
+const crimeToPropertyValueRatio = require('./crimeToPropertyValueRatio');
 
 
 const router = express.Router();
@@ -35,5 +36,5 @@ router.use('/allCrimes', allCrimes);
 
 router.use('/blocks', blocks);
 router.use('/crimeMonthYear', crimeMonthYear);
-
+router.use('/crimeToPropertyValueRatio', crimeToPropertyValueRatio)
 module.exports = router;
