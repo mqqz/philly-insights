@@ -16,10 +16,15 @@ router.get('/', (req, res) => {
   let buildingTypeLimit = '';
   let query = '';
 
-  if (!marketValue && !location && !buildingType) {
+  let parsedMarketValue = [];
+  if (marketValue) {
+    parsedMarketValue = marketValue.split(',');
+  }
+
+  if (!parsedMarketValue[0] && !location && !buildingType) {
     query = 'SELECT * FROM Property LIMIT 20000';
   } else {
-    marketLimit = marketValue ? ` market_value BETWEEN ${marketValue[0]} AND ${marketValue[1]} ` : '';
+    marketLimit = (parsedMarketValue[0] !== 'undefined' && parsedMarketValue[0] !== undefined) ? ` market_value BETWEEN ${parsedMarketValue[0]} AND ${parsedMarketValue[1]} ` : '';
     locationLimit = location ? ` location LIKE '%${location}%' ` : '';
     buildingTypeLimit = buildingType ? ` building_code_description LIKE '%${buildingType}%' ` : '';
     const allLimits = [marketLimit, locationLimit, buildingTypeLimit].filter((x) => x !== '');

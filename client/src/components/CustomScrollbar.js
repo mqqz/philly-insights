@@ -1,18 +1,32 @@
 import React, { useState } from "react";
 import { Range } from "react-range";
 
-const CustomScrollbar = ({ title, upperLimit, lowerLimit, initialValue, isRange, onChange }) => {
+const CustomScrollbar = ({ 
+  title, 
+  upperLimit, 
+  lowerLimit, 
+  initialValue, 
+  isRange, 
+  onChange, 
+  isEnabled, 
+  setIsEnabled 
+}) => {
   const [values, setValues] = useState(initialValue || [lowerLimit, upperLimit]);
-  const [isEnabled, setIsEnabled] = useState(true);
 
   const toggleEnabled = () => {
     setIsEnabled(!isEnabled);
   };
 
+  const handleMouseUp = (vals) => {
+    if (onChange) {
+      onChange(vals);
+    }
+  };
+
   return (
     <div className="bg-white p-4 rounded-md">
       <div className="flex justify-between items-center mb-2">
-        <h2 className="text-lg font-bold">{title}</h2>
+        <h2 className="text-lg font-bold mb-4">{title}</h2>
         <button
           onClick={toggleEnabled}
           className={`px-2 py-0.5 rounded-md text-xs font-semibold text-white ${
@@ -30,9 +44,6 @@ const CustomScrollbar = ({ title, upperLimit, lowerLimit, initialValue, isRange,
         max={upperLimit}
         onChange={(vals) => {
           setValues(vals);
-          if (onChange) {
-            onChange(vals);
-          }
         }}
         renderTrack={({ props, children }) => (
           <div
@@ -58,6 +69,7 @@ const CustomScrollbar = ({ title, upperLimit, lowerLimit, initialValue, isRange,
         renderThumb={({ props, index }) => (
           <div
             {...props}
+            onMouseUp={() => handleMouseUp(values)}
             style={{
               ...props.style,
               height: "16px",
