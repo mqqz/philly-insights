@@ -18,7 +18,7 @@ const blockOptions = [
     { text: 'Condo', value: 'CONDO' },
   ];
   
-const fetchData = async (marketLimit, locationLimit, buildingType, startIdx, endIdx) => {
+export const fetchData = async (marketLimit, locationLimit, buildingType, startIdx, endIdx) => {
     let url = '';
     if (!marketLimit[0] && !locationLimit && !buildingType) {
         url = 'http://localhost:8000/api/property';
@@ -174,5 +174,4 @@ const PropertyTable = () => {
       </TableContainer>
     );
   };
-  
   export default PropertyTable;
