@@ -42,7 +42,7 @@ const PropertyTable = () => {
     const [isMVEnabled, setIsMVEnabled] = useState(false);
     const [page, setPage] = useState(1);
     const [allRows, setAllRows] = useState([]);
-    const rowsPerPage = 10;
+    const rowsPerPage = 5;
 
     const handleRangeChange = (value) => {
         setMarketValueRange(value);
@@ -96,7 +96,7 @@ const PropertyTable = () => {
          />
          <Box sx={{ width: '95%', margin: '0 auto'}}>
           <FormControl fullWidth variant="outlined" size="small">
-            <InputLabel id="crime-type-label" sx={{ fontSize: '1rem' }}>Building Type Limit</InputLabel>
+            <InputLabel id="crime-type-label" sx={{ fontSize: '1rem' }}>Building Type Filter</InputLabel>
             <Select
               labelId="crime-type-label"
               id="crime-type-select"

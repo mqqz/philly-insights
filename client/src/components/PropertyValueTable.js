@@ -45,7 +45,7 @@ const PropertyValueTable = () => {
     const [buildingType, setBuildingType] = useState('');
     const [page, setPage] = useState(1);
     const [allRows, setAllRows] = useState([]);
-    const rowsPerPage = 10;
+    const rowsPerPage = 5;
     const [count, setCount] = useState(10);
     const [ascending, setAscending] = useState(false);
 
@@ -59,11 +59,6 @@ const PropertyValueTable = () => {
 
     const handlePageChange = (event, newPage) => {
         setPage(newPage);
-    };
-
-    // New functions to handle slider changes
-    const handleAscendingSliderChange = (event, newValue) => {
-      setAscending(newValue === 1);
     };
 
     const handleCountSliderChange = (event, newValue) => {
@@ -91,7 +86,7 @@ const PropertyValueTable = () => {
         <div>
          <Box sx={{ width: '95%', margin: '0 auto'}}>
           <FormControl fullWidth variant="outlined" size="small">
-            <InputLabel id="crime-type-label" sx={{ fontSize: '1rem' }}>Building Type Limit</InputLabel>
+            <InputLabel id="crime-type-label" sx={{ fontSize: '1rem' }}>Building Type Filter</InputLabel>
             <Select
               labelId="crime-type-label"
               id="crime-type-select"
