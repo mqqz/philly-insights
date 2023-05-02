@@ -3,6 +3,7 @@ import Navbar from "./components/Navbar";
 import HomePage from './pages/HomePage';
 import BlocksPage from './pages/BlocksPage';
 import PropertyPage from './pages/PropertyPage';
+import Login from "./pages/Login";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { CssBaseline, ThemeProvider } from '@mui/material'
@@ -25,7 +26,8 @@ export default function App() {
       <BrowserRouter>
       <Navbar />
       <Routes>
-          <Route path="/" element={<HomePage/>} />
+          <Route path="/" element={<Login/>} />
+          <Route path="/home" element={<HomePage/>} />
           <Route path="/blocks" element={<BlocksPage />} />
           <Route path="/property" element={<PropertyPage />} />
       </Routes>

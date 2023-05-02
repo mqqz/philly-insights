@@ -14,7 +14,8 @@ const allCrimes = require('./allCrimes');
 const blocks = require('./blocks');
 const crimeMonthYear = require('./crimeMonthYear');
 const crimeToPropertyValueRatio = require('./crimeToPropertyValueRatio');
-
+const login = require('./login');
+const register = require('./register');
 
 const router = express.Router();
 
@@ -38,5 +39,8 @@ router.use('/allCrimes', allCrimes);
 
 router.use('/blocks', blocks);
 router.use('/crimeMonthYear', crimeMonthYear);
-router.use('/crimeToPropertyValueRatio', crimeToPropertyValueRatio)
+router.use('/crimeToPropertyValueRatio', crimeToPropertyValueRatio);
+router.use('/login', login);
+router.use('/register', register);
+
 module.exports = router;
