@@ -1,8 +1,10 @@
 import React from 'react';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
 import CustomScrollbar from './CustomScrollbar';
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect } from 'react';
 import { MenuItem, FormControl, InputLabel, Select, Button, ListItemIcon, TextField, Box } from '@mui/material';
+import Pagination from '@mui/material/Pagination';
+import Stack from '@mui/material/Stack';
 
 const blockOptions = [
     { text: 'Parking lot', value: 'PKG LOT' },
@@ -16,7 +18,7 @@ const blockOptions = [
     { text: 'Condo', value: 'CONDO' },
   ];
   
-const fetchData = async (marketLimit, locationLimit, buildingType) => {
+const fetchData = async (marketLimit, locationLimit, buildingType, startIdx, endIdx) => {
     let url = '';
     if (!marketLimit[0] && !locationLimit && !buildingType) {
         url = 'http://localhost:8000/api/property';
@@ -34,10 +36,13 @@ const fetchData = async (marketLimit, locationLimit, buildingType) => {
 
 const PropertyTable = () => {
     const [rows, setRows] = useState([]);
-    const [marketValueRange, setMarketValueRange] = useState([]);
+    const [marketValueRange, setMarketValueRange] = useState([100000, 500000]);
     const [locationLimit, setLocationLimit] = useState('');
     const [buildingType, setBuildingType] = useState('');
     const [isMVEnabled, setIsMVEnabled] = useState(false);
+    const [page, setPage] = useState(1);
+    const [allRows, setAllRows] = useState([]);
+    const rowsPerPage = 10;
 
     const handleRangeChange = (value) => {
         setMarketValueRange(value);
@@ -53,24 +58,30 @@ const PropertyTable = () => {
 
     const handleBuildingClear = () => {
         setBuildingType('');
-      };
+    };
+
+    const handlePageChange = (event, newPage) => {
+        setPage(newPage);
+    };
 
     // Initial loading of the table
     useEffect(() => {
         const callingFetch = async () => {
-            const inputMVLimit = isMVEnabled ? marketValueRange : [];
-            const data = await fetchData(inputMVLimit, locationLimit, buildingType);
-            if (data.length > 20) {
-              setRows(data.splice(0, 10))
-            } else {
-              setRows(data);
-          }
+          const inputMVLimit = isMVEnabled ? marketValueRange : [];
+          const data = await fetchData(inputMVLimit, locationLimit, buildingType);
+          setAllRows(data);
         }
         callingFetch();
     }, [marketValueRange, locationLimit, buildingType, isMVEnabled]);
 
+    useEffect(() => {
+        const startIdx = (page - 1) * rowsPerPage;
+        const endIdx = startIdx + rowsPerPage;
+        setRows(allRows.slice(startIdx, endIdx));
+    }, [page, allRows, marketValueRange, locationLimit, buildingType, isMVEnabled]);
+
     return (
-      <TableContainer component={Paper} style={{ width: '80%', margin: 'auto', marginTop: '2rem' }}>
+      <TableContainer component={Paper} style={{ width: '80%', margin: 'auto', marginTop: '2rem', marginBottom: '20px' }}>
       <h1 className="text-3xl font-bold text-center mb-8">Property Page</h1>
         <div>
           <CustomScrollbar
@@ -151,6 +162,15 @@ const PropertyTable = () => {
               ))}
             </TableBody>
           </Table>
+          <Stack spacing={2} justifyContent="center" marginTop={2}>
+            <Pagination
+              count={Math.ceil(allRows.length / rowsPerPage)}
+              page={page}
+              onChange={handlePageChange}
+              siblingCount={1}
+              boundaryCount={1}
+            />
+          </Stack>
       </TableContainer>
     );
   };
