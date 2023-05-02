@@ -1,6 +1,8 @@
 const { MongoClient } = require('mongodb');
 
-const uri = 'mongodb+srv://lumich:6OZJvnip0tRzH4PM@randomcluster.5ni2aah.mongodb.net/finalproject';
+const password = process.ENV.mongopassword;
+
+const uri = `mongodb+srv://lumich:${password}@randomcluster.5ni2aah.mongodb.net/finalproject`;
 const client = new MongoClient(uri);
 
 let db;
