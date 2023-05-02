@@ -22,13 +22,13 @@ router.get('/', (req, res) => {
   }
 
   if (!parsedMarketValue[0] && !location && !buildingType) {
-    query = 'SELECT * FROM Property LIMIT 20000';
+    query = 'SELECT * FROM Property LIMIT 1000';
   } else {
     marketLimit = (parsedMarketValue[0] !== 'undefined' && parsedMarketValue[0] !== undefined) ? ` market_value BETWEEN ${parsedMarketValue[0]} AND ${parsedMarketValue[1]} ` : '';
     locationLimit = location ? ` location LIKE '%${location}%' ` : '';
     buildingTypeLimit = buildingType ? ` building_code_description LIKE '%${buildingType}%' ` : '';
     const allLimits = [marketLimit, locationLimit, buildingTypeLimit].filter((x) => x !== '');
-    query = `SELECT * FROM Property WHERE ${allLimits.join(' AND ')} LIMIT 20000`;
+    query = `SELECT * FROM Property WHERE ${allLimits.join(' AND ')} LIMIT 1000`;
   }
 
   pool.getConnection((err, connection) => {

@@ -9,8 +9,6 @@ router.get('/', (req, res) => {
   let { ascending } = req.query;
   const { buildingType } = req.query;
   let { count } = req.query;
-  // eslint-disable-next-line no-console
-  console.log(req.query);
 
   if (ascending === undefined) {
     ascending = false;
@@ -25,8 +23,7 @@ router.get('/', (req, res) => {
     buildingTypeLimit = ` WHERE building_code_description LIKE '%${buildingType}%'`;
   }
 
-  const query = `SELECT * FROM Property ${buildingTypeLimit} ORDER BY market_value ${ascending ? 'ASC' : 'DESC'} LIMIT ${count}`;
-
+  const query = `SELECT * FROM Property ${buildingTypeLimit} ORDER BY market_value ${ascending === 'true' ? 'ASC' : 'DESC'} LIMIT ${count}`;
   pool.getConnection((err, connection) => {
     if (err) throw err;
     connection.query(query, (err2, rows) => {
