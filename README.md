@@ -11,6 +11,9 @@ An application that allows users to view correlations between real-estate and cr
 
 ---
 
+The file db_preprocessing_population.md contains our raw data and preprocessing code. 
+
+
 INSTRUCTIONS TO RUN:
 
 In both client and server, must run 'npm install --force'. Any additional npm installations that must be done (such as for Express) must also use --force.
