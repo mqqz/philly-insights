@@ -15,7 +15,7 @@ INSTRUCTIONS TO RUN:
 
 In both client and server, must run 'npm install --force'. Any additional npm installations that must be done (such as for Express) must also use --force.
 
-Additionally, before starting the server, run 'export mongopassword=<password>'.
+Additionally, before starting the server, run 'export mongopassword=thePassword'.
   
 The actual password is contained in the extra credit section of our final project report. (did not put it here for security). 
   
